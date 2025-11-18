@@ -4,6 +4,8 @@ Docker Compose configuration for running GraphXR and Memgraph graph database.
 
 ## 🚀 Quick Start
 
+Download the [docker-compose.yaml](https://raw.githubusercontent.com/Kineviz/graphxr-lite/refs/heads/master/memgraph/docker-compose.yaml) file and run the following commands:
+
 ```bash
 # Start all services
 docker-compose up -d
@@ -37,7 +39,7 @@ Follow these steps to load and explore the "Game of Thrones deaths" dataset:
    - Navigate to http://localhost:8080
    - Login with credentials:
      - **Username**: graphxr@kineviz.com
-     - **Password**: kineviz666666
+     - **Password**: kineviz123456
    - Use the search function to query data (e.g., search for "Season")  
    ![Search in GraphXR](./images/3-search-graphxr.png)
    - Enjoy exploring the interactive graph visualization!
@@ -47,7 +49,7 @@ Follow these steps to load and explore the "Game of Thrones deaths" dataset:
 ### GraphXR
 - **URL**: http://localhost:8080
 - **Username**: graphxr@kineviz.com
-- **Password**: kineviz666666
+- **Password**: kineviz123456
 
 ### Memgraph
 - **Bolt Connection**: bolt://localhost:9687
@@ -59,4 +61,4 @@ Follow these steps to load and explore the "Game of Thrones deaths" dataset:
 
 - [Memgraph Documentation](https://memgraph.com/docs)
 - [GraphXR Documentation](https://helpcenter.kineviz.com)
-- [Docker Compose Documentation](https://docs.docker.com/compose/)
+- [GraphXR Support](https://www.kineviz.com/contact)

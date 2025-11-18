@@ -1,0 +1,43 @@
+services:
+  neo4j:
+    image: neo4j:5.2
+    ports:
+      - 7687:7687
+      - 7474:7474
+    volumes:
+      - "./data/neo4j/data:/data:rw"
+      - "./data/neo4j/plugins:/plugins:rw"
+      - "./data/neo4j/logs:/logs:rw"
+      - "./data/neo4j/import:/var/lib/neo4j/import"
+    environment:
+      - "NEO4J_ACCEPT_LICENSE_AGREEMENT=yes"
+      - "NEO4J_AUTH=neo4j/kineviz123456"
+
+  mongo:
+    image: mongo:latest
+    container_name: graphxr-mongo
+    volumes:
+      - ./data/mongo:/data/db
+
+  graphxr:
+    image: kineviz/graphxr_lite:neo4j 
+    container_name: graphxr
+    ports:
+      - "8080:9000"
+    volumes:
+      - ./data/graphxr:/data
+    environment:
+      # GraphXR admin user settings
+      - ADMIN_EMAIL=graphxr@kineviz.com
+      - ADMIN_PASSWORD=kineviz123456
+      # Neo4j connection settings
+      - NEO4J_HOST=neo4j
+      - NEO4J_BOLT_PORT=7687
+      - NEO4J_USERNAME=neo4j
+      - NEO4J_PASSWORD=kineviz123456
+      - NEO4J_DATABASE=neo4j
+      # MongoDB connection settings
+      - MONGO_URL=mongodb://mongo:27017/graphxr
+    depends_on:
+      - neo4j
+      - mongo
