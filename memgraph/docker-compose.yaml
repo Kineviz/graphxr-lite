@@ -35,6 +35,7 @@ services:
   graphxr:
     image: kineviz/graphxr_lite:memgraph 
     container_name: graphxr
+    platform: linux/amd64
     ports:
       - "8080:9000"
     volumes:

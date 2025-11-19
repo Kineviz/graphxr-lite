@@ -141,6 +141,7 @@ services:
   graphxr:
     image: kineviz/graphxr_lite:puppygraph 
     container_name: graphxr
+    platform: linux/amd64
     networks:
       iceberg_net:
     ports:

@@ -22,6 +22,7 @@ services:
   graphxr:
     image: kineviz/graphxr_lite:neo4j 
     container_name: graphxr
+    platform: linux/amd64
     ports:
       - "8080:9000"
     volumes:
