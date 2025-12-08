@@ -163,6 +163,8 @@ services:
       - MONGO_URL=mongodb://mongo:27017/graphxr
       # Grove & Grove Notebooks
       - CONFIG_DEFAULT_EXTENSIONS=Grove
+      - CONFIG_OPEN_GROVEBOOK_ON_LOAD=0_overview
+      - FEATURES_OPEN_GROVE_BOOK_ON_LOAD=true
     depends_on:
       puppygraph:
         condition: service_started
