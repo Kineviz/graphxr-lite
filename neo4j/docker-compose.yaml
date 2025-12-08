@@ -27,7 +27,6 @@ services:
       - "8080:9000"
     volumes:
       - ./data/graphxr:/data
-      - ./data/grove:/opt/app/docker/extensions/grove
     environment:
       # GraphXR admin user settings
       - ADMIN_EMAIL=graphxr@kineviz.com

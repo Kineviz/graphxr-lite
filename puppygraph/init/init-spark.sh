@@ -31,6 +31,8 @@ elif [ -f /home/iceberg/init/init-data.sql ]; then
     echo "ERROR: Failed to execute init-data.sql"
     echo "========================================="
     # Do NOT create marker on failure - let healthcheck fail
+    # check the database already exists error in logs
+    touch /tmp/init-completed
     exit 1
   fi
 else
