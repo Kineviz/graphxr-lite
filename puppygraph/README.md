@@ -4,12 +4,13 @@ A complete Docker Compose stack for running GraphXR with PuppyGraph, featuring A
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Quick Start](#quick-start)
-- [Getting Started Guide](#getting-started-guide)
-- [Service Information](#service-information)
-- [Troubleshooting](#troubleshooting)
-- [Related Links](#related-links)
+- [Overview](#-overview)
+- [Quick Start](#-quick-start)
+- [Getting Started Guide](#-getting-started-guide)
+- [Grove Notebooks Support](#-grove-notebooks-support)
+- [Service Information](#-service-information)
+- [Troubleshooting](#-troubleshooting)
+- [Related Links](#-related-links)
 
 ## 🎯 Overview
 
@@ -99,6 +100,72 @@ docker-compose down
 
    ![Search in GraphXR](./images/4-enjoy-graphxr.png)
 
+
+## 📓 Grove Notebooks Support
+
+Grove notebooks provide pre-built graph analysis workflows and interactive guides for exploring your data in GraphXR. This setup includes several demonstration notebooks for cloud security analysis.
+
+### Enabling Grove Notebooks
+
+To enable Grove notebook support, mount the notebooks directory to the GraphXR container by adding the following configuration to the `graphxr` service in `docker-compose.yml`:
+
+```yaml
+  graphxr:
+    ...
+    volumes:
+      ...
+      # Mount grove notebooks directory
+      - ./grove:/opt/project/preload/groveNotebooks
+    environment:
+      ...
+      # Enable the Grove extension
+      - CONFIG_DEFAULT_EXTENSIONS=Grove
+      # Automatically load a notebook on startup
+      - CONFIG_OPEN_GROVEBOOK_ON_LOAD=0_overview
+      - FEATURES_OPEN_GROVE_BOOK_ON_LOAD=true
+```
+
+### Included Grove Notebooks
+
+The `./grove/` directory contains the following notebooks:
+
+- **0_overview.grove** - Introduction and overview of the cloud security graph
+- **1_userAnalysis.grove** - User access patterns and analysis
+- **2_network.grove** - Network topology and connectivity analysis
+- **3_roleAndSecurity.grove** - Role-based access and security group analysis
+- **expandEdge.grove** - Edge expansion utilities
+- **neo4jUtilities.grove** - Additional utility functions
+- **timeline.grove** - Custom mouse right menu for timeline analysis
+
+### Customizing Notebook Configuration
+
+You can customize the notebook library's appearance and metadata by editing the `./grove/index.json` file. This file controls:
+
+- Notebook icons and display names
+- Loading order and organization
+
+**Example structure:**
+```json
+{
+  "notebooks": [
+    {
+      "id": "0_overview",
+      "name": "Overview",
+      "icon": "book",
+      "description": "Introduction to cloud security analysis"
+    }
+  ]
+}
+```
+
+### Creating Custom Notebooks
+
+To add your own Grove notebooks:
+
+1. Create a new `.grove` file in the `./grove/` directory
+2. Add an entry to `./grove/index.json` with the notebook metadata
+3. Restart the GraphXR container: `docker-compose restart graphxr`
+4. The new notebook will appear in the Grove panel in GraphXR
 
 ## 📋 Service Information
 
