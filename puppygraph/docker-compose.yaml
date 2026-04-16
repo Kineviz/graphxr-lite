@@ -108,7 +108,7 @@ services:
     restart: unless-stopped
 
   puppygraph:
-    image: puppygraph/puppygraph:0.95
+    image: puppygraph/puppygraph:0.116
     container_name: puppygraph
     networks:
       iceberg_net:
@@ -132,6 +132,8 @@ services:
   mongo:
     image: mongo:latest
     container_name: graphxr-mongo
+    ports:
+      - "27019:27017"
     networks:
       iceberg_net:
     volumes:
@@ -163,7 +165,7 @@ services:
       - MONGO_URL=mongodb://mongo:27017/graphxr
       # Grove & Grove Notebooks
       - CONFIG_DEFAULT_EXTENSIONS=Grove
-      - CONFIG_OPEN_GROVEBOOK_ON_LOAD=0_overview
+      - CONFIG_OPEN_GROVEBOOK_ON_LOAD=0_overview.md
       - FEATURES_OPEN_GROVE_BOOK_ON_LOAD=true
     depends_on:
       puppygraph:
